@@ -25,6 +25,13 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
+      - name: Reset Poetry Virtual Environment
+        run: |
+          poetry env remove python || true
+          poetry cache clear pypi --all
+          poetry config virtualenvs.in-project true
+          poetry install
+          
       - name: Extract Package Name if Comment is from BAEM1N
         id: extract_package
         uses: actions/github-script@v7
