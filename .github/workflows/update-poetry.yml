@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - name: Set up Python and Poetry
         uses: actions/setup-python@v4
         with:
